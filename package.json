@@ -1,0 +1,47 @@
+{
+  "name": "@vocalime/jovo-standard-events-plugin",
+  "version": "1.0.0",
+  "description": "Handle standard events outside your components.",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist/"
+  ],
+  "dependencies": {
+    "@jovotech/framework": "^4.2.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.0.2",
+    "@typescript-eslint/eslint-plugin": "^4.12.0",
+    "@typescript-eslint/parser": "^4.12.0",
+    "eslint": "^7.17.0",
+    "eslint-config-prettier": "^7.1.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "jest": "^27.3.1",
+    "prettier": "^2.2.1",
+    "ts-jest": "^27.0.7",
+    "typescript": "~4.4.0"
+  },
+  "scripts": {
+    "test": "jest",
+    "build": "tsc",
+    "lint": "eslint src --fix --ext .ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vocalime-base/jovo-standard-events-plugin.git"
+  },
+  "keywords": [
+    "jovo",
+    "plugin"
+  ],
+  "author": "Vocalime",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vocalime-base/jovo-standard-events-plugin/issues"
+  },
+  "homepage": "https://github.com/vocalime-base/jovo-standard-events-plugin#readme",
+  "publishConfig": {
+    "access": "public"
+  }
+}

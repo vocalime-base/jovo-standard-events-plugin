@@ -1,5 +1,5 @@
 # Welcome to Jovo Standard Events Plugin 👋
-![Version](https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000)
+![Version](https://img.shields.io/npm/v/@vocalime/jovo-standard-events-plugin?cacheSeconds=2592000)
 [![License: MIT](https://img.shields.io/github/license/vocalime-base/Jovo-Standard-Events-Plugin)](https://github.com/vocalime-base/jovo-standard-events-plugin/blob/master/LICENSE)
 ![Workflow](https://img.shields.io/github/workflow/status/vocalime-base/jovo-standard-events-plugin/Release%20package)
 

@@ -1,0 +1,11 @@
+# IDE
+.idea
+
+# Dependencies
+**/**/node_modules
+
+# Docs
+docs/
+
+# Builds
+dist/

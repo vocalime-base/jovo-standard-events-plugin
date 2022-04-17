@@ -7,12 +7,13 @@ import {
     PluginConfig,
 } from '@jovotech/framework';
 
-export type StandardEventHandler = (this: Jovo) => Promise<void> | void;
+export type StandardEventHandler = (jovo: Jovo) => Promise<void> | void;
 
 interface StandardEventPluginConfig extends PluginConfig {
     newUserHandlers: StandardEventHandler[];
     newSessionHandlers: StandardEventHandler[];
     onRequestHandlers: StandardEventHandler[];
+    onResponseHandlers: StandardEventHandler[];
 }
 
 export class StandardEventsPlugin extends Plugin<StandardEventPluginConfig> {
@@ -21,6 +22,7 @@ export class StandardEventsPlugin extends Plugin<StandardEventPluginConfig> {
             newUserHandlers: [],
             newSessionHandlers: [],
             onRequestHandlers: [],
+            onResponseHandlers: [],
         };
     }
 
@@ -29,10 +31,15 @@ export class StandardEventsPlugin extends Plugin<StandardEventPluginConfig> {
             throw new InvalidParentError(this.constructor.name, HandleRequest);
         }
 
-        extensible.middlewareCollection.use('request.end', async (jovo) => {
+        extensible.middlewareCollection.use('before.dialogue.start', async (jovo) => {
             await this.executeNewUserHandlers(jovo);
             await this.executeNewSessionHandlers(jovo);
             await this.executeOnRequestHandlers(jovo);
+            return;
+        });
+
+        extensible.middlewareCollection.use('before.response.start', async (jovo) => {
+            await this.executeOnResponseHandlers(jovo);
             return;
         });
     }
@@ -40,7 +47,7 @@ export class StandardEventsPlugin extends Plugin<StandardEventPluginConfig> {
     async executeNewUserHandlers(jovo: Jovo): Promise<void> {
         if (jovo.$user.isNew) {
             for (const handler of this.config.newUserHandlers) {
-                await handler.bind(jovo)();
+                await handler(jovo);
             }
         }
     }
@@ -48,14 +55,20 @@ export class StandardEventsPlugin extends Plugin<StandardEventPluginConfig> {
     async executeNewSessionHandlers(jovo: Jovo): Promise<void> {
         if (jovo.$session.isNew) {
             for (const handler of this.config.newSessionHandlers) {
-                await handler.bind(jovo)();
+                await handler(jovo);
             }
         }
     }
 
     async executeOnRequestHandlers(jovo: Jovo): Promise<void> {
         for (const handler of this.config.onRequestHandlers) {
-            await handler.bind(jovo)();
+            await handler(jovo);
+        }
+    }
+
+    async executeOnResponseHandlers(jovo: Jovo): Promise<void> {
+        for (const handler of this.config.onRequestHandlers) {
+            await handler(jovo);
         }
     }
 }

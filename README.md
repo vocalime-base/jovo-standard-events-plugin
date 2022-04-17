@@ -24,6 +24,7 @@ import {
     newUser,
     newSession,
     onRequest,
+    onResponse,
 } from './standard-event-handlers';
 
 export const app = new App({
@@ -36,6 +37,7 @@ export const app = new App({
             newUserHandlers: [newUser],
             newSessionHandlers: [newSession],
             onRequestHandlers: [onRequest],
+            onResponseHandlers: [onResponse],
         }),
     ],
 });
@@ -55,7 +57,11 @@ export async function newSession(this: Jovo): Promise<void> {
 }
 
 export async function onRequest(this: Jovo): Promise<void> {
-    console.log('This function runs once per request.');
+    console.log('This function runs once per request after deserializing the request from JSON.');
+}
+
+export async function onResponse(this: Jovo): Promise<void> {
+    console.log('This function runs once per request before serializing the response to JSON.');
 }
 ```
 

@@ -67,7 +67,7 @@ export class StandardEventsPlugin extends Plugin<StandardEventPluginConfig> {
     }
 
     async executeOnResponseHandlers(jovo: Jovo): Promise<void> {
-        for (const handler of this.config.onRequestHandlers) {
+        for (const handler of this.config.onResponseHandlers) {
             await handler(jovo);
         }
     }

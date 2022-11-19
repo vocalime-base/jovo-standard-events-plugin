@@ -48,19 +48,19 @@ export const app = new App({
 ```typescript
 import { Jovo } from '@jovotech/framework';
 
-export async function newUser(this: Jovo): Promise<void> {
+export async function newUser(jovo: Jovo): Promise<void> {
     console.log('This function runs the first time the user invokes your app.');
 }
 
-export async function newSession(this: Jovo): Promise<void> {
+export async function newSession(jovo: Jovo): Promise<void> {
     console.log('This function runs once per session.');
 }
 
-export async function onRequest(this: Jovo): Promise<void> {
+export async function onRequest(jovo: Jovo): Promise<void> {
     console.log('This function runs once per request after deserializing the request from JSON.');
 }
 
-export async function onResponse(this: Jovo): Promise<void> {
+export async function onResponse(jovo: Jovo): Promise<void> {
     console.log('This function runs once per request before serializing the response to JSON.');
 }
 ```

@@ -8,7 +8,7 @@
     "dist/"
   ],
   "dependencies": {
-    "@jovotech/framework": "^4.2.0"
+    "@jovotech/framework": "^4.4.3"
   },
   "devDependencies": {
     "@types/jest": "^27.0.2",
